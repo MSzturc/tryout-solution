@@ -5,7 +5,6 @@ import de.mszturc.tryout.solution.entity.ObjectFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -25,36 +24,34 @@ public class ProprietaryFileToXMLTransformer {
     }
 
     public void transform(Path input, Path output) {
-        String[] wholeFileAsString = read(input);
+        List<String> wholeFileAsString = read(input);
         NumberListResponse response = transform(wholeFileAsString);
         write(response, output);
     }
 
-    private String[] read(Path input) {
+    private List<String> read(Path input) {
         try {
-            String wholeFile = new String(Files.readAllBytes(input));
-            String[] fileAsString = wholeFile.split("[\\r\\n]+");
-            return fileAsString;
+            return Files.readAllLines(input);
         } catch (IOException exception) {
             throw new IllegalArgumentException("Cannot read file", exception);
         }
     }
 
-    private NumberListResponse transform(String[] fromFile) {
+    private NumberListResponse transform(List<String> fromFile) {
         NumberListResponse result = readHeader(fromFile);
         result.getSerialNumberList().getSN().addAll(readSNList(fromFile));
         return result;
     }
-    
+
     private void write(NumberListResponse response, Path output) {
         JAXB.marshal(response, output.toFile());
     }
 
-    private String getHeader(String[] fromFile) {
-        return fromFile[0];
+    private String getHeader(List<String> fromFile) {
+        return fromFile.get(0);
     }
 
-    private NumberListResponse readHeader(String[] fromFile) {
+    private NumberListResponse readHeader(List<String> fromFile) {
         NumberListResponse response = createEmptyResponse();
 
         StringTokenizer tokenizer = new StringTokenizer(getHeader(fromFile), "#");
@@ -72,8 +69,8 @@ public class ProprietaryFileToXMLTransformer {
         return response;
     }
 
-    private List<Long> readSNList(String[] snList) {
-        return Arrays.stream(snList)
+    private List<Long> readSNList(List<String> snList) {
+        return snList.stream()
                 .skip(1)
                 .map(item -> Long.valueOf(item))
                 .collect(toList());
