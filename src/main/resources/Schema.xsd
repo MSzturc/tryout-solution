@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="NumberListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="EncodingType"/>
+        <xs:element type="xs:string" name="IDType"/>
+        <xs:element type="xs:string" name="NumberFrom"/>
+        <xs:element type="xs:string" name="NumberTo"/>
+        <xs:element type="xs:string" name="GTIN"/>
+        <xs:element name="SerialNumberList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:long" name="SN" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

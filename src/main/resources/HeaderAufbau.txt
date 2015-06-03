@@ -1,0 +1,10 @@
+#SGTIN#GS1_SER#08699726011005#100000000001#100000000005#5#
+
+
+# - Separator
+SGTIN - Encoding Type
+GS1_SER - ID Type
+08699726011005 - GTIN
+100000000001 - Smallest Serialnumber
+100000000005 - Highest Serialnumber
+5 - Serialnumber count

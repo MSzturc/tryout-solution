@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NumberListResponse>
+    <EncodingType>SGTIN</EncodingType>
+    <IDType>GS1_SER</IDType>
+    <NumberFrom>100000000001</NumberFrom>
+    <NumberTo>100000000005</NumberTo>
+    <GTIN>08699726011005</GTIN>
+    <SerialNumberList>
+         <SN>100000000001</SN>
+         <SN>100000000002</SN>
+         <SN>100000000003</SN>
+         <SN>100000000004</SN>
+         <SN>100000000005</SN>
+    </SerialNumberList>
+</NumberListResponse>
